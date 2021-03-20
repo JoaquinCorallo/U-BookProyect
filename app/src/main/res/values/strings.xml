@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">U-Book</string>
     <string name="titulo">U-Book</string>
-    <string name="sub_Titulo">Sistema de Intercamio, donación y venta de libros usados</string>
+    <string name="sub_Titulo">Comunidad de Intercambio, donación y venta de libros usados</string>
     <string name="btn_find">Buscar Libros</string>
     <string name="btn_upload">Agregar Libro</string>
 </resources>

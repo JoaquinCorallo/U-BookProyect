@@ -1,7 +1,8 @@
-package com.okbit.ubook
+package com.okbit.ubook.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.okbit.ubook.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

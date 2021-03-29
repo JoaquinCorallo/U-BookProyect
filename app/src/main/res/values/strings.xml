@@ -4,4 +4,32 @@
     <string name="sub_Titulo">Comunidad de Intercambio, donación y venta de libros usados</string>
     <string name="btn_find">Buscar Libros</string>
     <string name="btn_upload">Agregar Libro</string>
+    <string name="libro_titulo">Titulo</string>
+    <string name="libro_descripcion">Descripcion</string>
+    <string name="libro_condicion">Condicion</string>
+    <string name="libro_edad_recomendada">Edad Recomendada</string>
+    <string name="libro_paginas">Paginas</string>
+    <string name="libro_idioma">Idioma</string>
+    <string name="libro_dimensiones">Dimensiones</string>
+    <string name="libro_autor">Autor</string>
+    <string name="libro_isbn">ISBN</string>
+    <string name="libro_fotos">Foto/s</string>
+    <string name="libro_agregar_fotos">Sacar Foto</string>
+    <string name="libro_tipo_transaccion">Tipo de Transaccion</string>
+    <string name="libro_precio">Precio</string>
+    <string name="modo">Modo</string>
+    <string name="InfoLibro">Agregar Libro</string>
+    <string-array name="tipoTransaccionArray">
+        <item> </item>
+        <item>Venta</item>
+        <item>Intercambio</item>
+        <item>Donacion</item>
+    </string-array>
+    <string-array name="condicionArray">
+        <item> </item>
+        <item>Nuevo</item>
+        <item>Casi Nuevo</item>
+        <item>Buen Estado</item>
+        <item>Dañado</item>
+    </string-array>
 </resources>

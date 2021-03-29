@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ubook">
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".main.upload.UploadActivity"/>
+        <activity android:name=".main.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

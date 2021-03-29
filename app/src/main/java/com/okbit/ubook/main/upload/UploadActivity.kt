@@ -1,12 +1,11 @@
-package com.okbit.ubook.main
+package com.okbit.ubook.main.upload
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.okbit.ubook.R
 
-class MainActivity : AppCompatActivity() {
+class UploadActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_upload)
     }
 }

@@ -1,7 +1,9 @@
 package com.okbit.ubook.main.upload
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.ActivityNotFoundException
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -13,21 +15,53 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.TextInputLayout
 import com.okbit.ubook.R
+import com.okbit.ubook.main.main.MainActivity
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-private var FILE_NAME = "Book" + SimpleDateFormat("yyyyMMdd_HHmmss_",Locale.getDefault()).format(Date())
+
+private var FILE_NAME = "Book" + SimpleDateFormat("yyyyMMdd_HHmmss_", Locale.getDefault()).format(Date())
 private const val REQUEST_CODE = 13
 private lateinit var photofile: File
+var isPhotoTaken = false
 
 class UploadActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload)
 
+        // Form values to control
+        var alertBookTitle = findViewById<TextInputLayout>(R.id.tituloInput)
         val staticSpinner = findViewById<View>(R.id.tipoTransaccionSpinner) as Spinner
+        val staticSpinner2 = findViewById<View>(R.id.condicionSpinner) as Spinner
+        var controlLanguage = findViewById<TextInputLayout>(R.id.idiomaInput)
+        var controlAutor = findViewById<TextInputLayout>(R.id.autorInput)
+        var controlPages = findViewById<TextInputLayout>(R.id.paginasInput)
+        var alertImageView = findViewById<ImageView>(R.id.photo)
+        val button = findViewById<Button>(R.id.agregarFoto)
+
+        // Floating Action Button
+        val actionButton = findViewById<FloatingActionButton>(R.id.addBook)
+        actionButton.setOnClickListener {
+            var alertBookThumbnail = (alertImageView.drawable)
+            var alertBookTitleText = alertBookTitle.editText?.text.toString()
+            var controlLanguageText = controlLanguage.editText?.text.toString()
+            var controlAutorText = controlAutor.editText?.text.toString()
+            var controlPagesText = controlPages.editText?.text.toString()
+            var controlTipoTransaccionText = staticSpinner.selectedItem.toString()
+            var controlCondicionText = staticSpinner2.selectedItem.toString()
+            AlertDialog.Builder(this)
+                    .setTitle(alertBookTitleText)
+                    .setMessage("Estas seguro que deseas publicar este libro?")
+                    .setIcon(alertBookThumbnail)
+                    .setPositiveButton("Si", DialogInterface.OnClickListener { _, _ -> confirm(alertBookTitleText, controlLanguageText, controlAutorText, controlPagesText, controlTipoTransaccionText, controlCondicionText, isPhotoTaken
+                    ) })
+                    .setNegativeButton("Volver a editar", null).show()
+        }
 
         // Create an ArrayAdapter using the string array and a default spinner
 
@@ -47,7 +81,6 @@ class UploadActivity : AppCompatActivity() {
         // Apply the adapter to the spinner
         staticSpinner.adapter = staticAdapter
 
-        val staticSpinner2 = findViewById<View>(R.id.condicionSpinner) as Spinner
 
         // Create an ArrayAdapter using the string array and a default spinner
 
@@ -68,7 +101,6 @@ class UploadActivity : AppCompatActivity() {
         staticSpinner2.adapter = staticAdapter2
 
         // Button to take pictures
-        val button = findViewById<Button>(R.id.agregarFoto)
         button.setOnClickListener {
             val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             photofile = getPhotoFile(FILE_NAME)
@@ -78,9 +110,21 @@ class UploadActivity : AppCompatActivity() {
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider)
             try {
                 startActivityForResult(takePictureIntent, REQUEST_CODE)
+                isPhotoTaken = true
             } catch (e: ActivityNotFoundException) {
-                Toast.makeText(applicationContext,"Camera not found",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Camera not found", Toast.LENGTH_LONG).show()
             }
+        }
+    }
+
+    private fun confirm(titleText: String, languajeText: String, autorText: String, pagesText: String, tipoTransaccion: String, condicion: String, photo: Boolean) {
+        if (titleText != "" && languajeText != "" && autorText != "" && pagesText != "" && tipoTransaccion != "" && condicion != "" && photo) {
+            print("subo a la base de datos")
+            Toast.makeText(this@UploadActivity, "Libro cargado con exito", Toast.LENGTH_LONG).show()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        } else {
+            Toast.makeText(this@UploadActivity, "Debes llenar todos los campos obligatorios marcados con *", Toast.LENGTH_LONG).show()
         }
     }
 

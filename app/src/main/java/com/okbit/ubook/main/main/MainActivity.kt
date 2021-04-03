@@ -8,12 +8,16 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import com.okbit.ubook.R
 import com.okbit.ubook.main.upload.UploadActivity
+import java.text.DecimalFormatSymbols
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val locale = Locale("es", "es")
+        Locale.setDefault(locale)
 
         val button = findViewById<Button>(R.id.btnupload)
             button.setOnClickListener {

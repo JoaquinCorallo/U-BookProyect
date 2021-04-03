@@ -9,7 +9,7 @@
     tools:context=".main.upload.UploadActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/addBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -42,6 +42,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:inputType="number"
         tools:context=".main.upload.UploadActivity">
 
             <TextView
@@ -75,6 +76,8 @@
                     android:paddingTop="4dp"
                     android:paddingEnd="4dp"
                     android:paddingBottom="4dp"
+                    android:singleLine="true"
+                    android:maxLength="50"
                     app:hintEnabled="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -121,6 +124,7 @@
                     android:paddingBottom="0dp"
                     android:scrollIndicators="right"
                     android:scrollbars="vertical"
+                    android:maxLength="500"
                     app:hintEnabled="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -177,6 +181,8 @@
                 android:paddingTop="4dp"
                 android:paddingEnd="4dp"
                 android:paddingBottom="4dp"
+                android:inputType="numberDecimal"
+                android:maxLength="20"
                 app:hintEnabled="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -233,6 +239,8 @@
                 android:paddingTop="4dp"
                 android:paddingEnd="4dp"
                 android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:maxLength="20"
                 app:hintEnabled="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -266,6 +274,8 @@
                 android:paddingTop="4dp"
                 android:paddingEnd="4dp"
                 android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:maxLength="50"
                 app:hintEnabled="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -299,6 +309,9 @@
                 android:paddingTop="4dp"
                 android:paddingEnd="4dp"
                 android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:inputType="number"
+                android:maxLength="10"
                 app:hintEnabled="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -332,6 +345,8 @@
                 android:paddingTop="4dp"
                 android:paddingEnd="4dp"
                 android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:maxLength="20"
                 app:hintEnabled="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -365,6 +380,8 @@
                 android:paddingTop="4dp"
                 android:paddingEnd="4dp"
                 android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:maxLength="20"
                 app:hintEnabled="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -408,7 +425,7 @@
             android:id="@+id/photo"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="24dp"
             android:scaleX="1.1"

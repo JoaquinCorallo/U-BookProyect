@@ -9,9 +9,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sub_Titulo"
-        android:textSize="24sp"
+        android:text="@string/sub_title"
         android:textAlignment="center"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -19,10 +19,15 @@
         app:layout_constraintVertical_bias="0.237" />
 
     <Button
-        android:id="@+id/btnfind"
+        android:id="@+id/btn_find"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:backgroundTint="#FE491A"
         android:text="@string/btn_find"
+        android:textColor="#FFFFFF"
+        app:icon="@android:drawable/ic_menu_search"
+        app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -31,15 +36,33 @@
         app:layout_constraintVertical_bias="0.445" />
 
     <Button
-        android:id="@+id/btnupload"
+        android:id="@+id/btn_upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FE491A"
         android:text="@string/btn_upload"
+        android:textColor="#FFFFFF"
+        app:icon="@drawable/ic_menu_camera"
+        app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.623" />
+
+    <Button
+        android:id="@+id/listBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FE491A"
+        android:text="@string/btn_list"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.751" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

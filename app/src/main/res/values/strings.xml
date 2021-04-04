@@ -17,4 +17,36 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    // otros strings
+    <string name="titulo">U-Book</string>
+    <string name="sub_Titulo">Comunidad de Intercambio, donación y venta de libros usados</string>
+    <string name="libro_titulo">Titulo *</string>
+    <string name="libro_descripcion">Descripción</string>
+    <string name="libro_categoria">Categoria *</string>
+    <string name="libro_contacto">Contacto *</string>
+    <string name="libro_punto_de_entrega">Punto de entrega *</string>
+    <string name="libro_idioma">Idioma *</string>
+    <string name="libro_dimensiones">Dimensiones</string>
+    <string name="libro_autor">Autor *</string>
+    <string name="libro_isbn">ISBN (sin guiones)</string>
+    <string name="libro_fotos">Foto *</string>
+    <string name="libro_agregar_fotos">Sacar Foto</string>
+    <string name="libro_tipo_transaccion">Tipo de Transacción *</string>
+    <string name="libro_precio">Precio</string>
+    <string name="modo">Modo</string>
+    <string name="InfoLibro">Agregar Libro</string>
+    <string-array name="tipoTransaccionArray">
+        <item> </item>
+        <item>Venta</item>
+        <item>Intercambio</item>
+        <item>Donacion</item>
+    </string-array>
+    <string-array name="condicionArray">
+        <item> </item>
+        <item>Drama</item>
+        <item>Ciencia Ficcion</item>
+        <item>Romance</item>
+        <item>Aventura</item>
+    </string-array>
 </resources>

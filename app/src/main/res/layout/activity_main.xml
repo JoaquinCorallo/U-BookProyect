@@ -23,7 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:backgroundTint="#FE491A"
         android:text="@string/btn_find"
         android:textColor="#FFFFFF"
         app:icon="@android:drawable/ic_menu_search"
@@ -39,7 +38,6 @@
         android:id="@+id/btn_upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FE491A"
         android:text="@string/btn_upload"
         android:textColor="#FFFFFF"
         app:icon="@drawable/ic_menu_camera"
@@ -55,7 +53,6 @@
         android:id="@+id/listBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FE491A"
         android:text="@string/btn_list"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -64,5 +61,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.751" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_change_theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

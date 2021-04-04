@@ -19,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputLayout
 import com.okbit.ubook.R
 import com.okbit.ubook.main.MainActivity
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -28,6 +29,7 @@ private var FILE_NAME = "Book" + SimpleDateFormat("yyyyMMdd_HHmmss_", Locale.get
 private const val REQUEST_CODE = 13
 private lateinit var photofile: File
 var isPhotoTaken = false
+var bitmapPhotoTaken = ""
 
 class UploadActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,8 +58,10 @@ class UploadActivity : AppCompatActivity() {
                     .setTitle(alertBookTitleText)
                     .setMessage("Estas seguro que deseas publicar este libro?")
                     .setIcon(alertBookThumbnail)
-                    .setPositiveButton("Si", DialogInterface.OnClickListener { _, _ -> confirm(alertBookTitleText, controlLanguageText, controlAutorText, controlTipoTransaccionText, controlCondicionText, isPhotoTaken
-                    ) })
+                    .setPositiveButton("Si", DialogInterface.OnClickListener { _, _ ->
+                        confirm(alertBookTitleText, controlLanguageText, controlAutorText, controlTipoTransaccionText, controlCondicionText, isPhotoTaken
+                        )
+                    })
                     .setNegativeButton("Volver a editar", null).show()
         }
 
@@ -119,6 +123,14 @@ class UploadActivity : AppCompatActivity() {
         if (titleText != "" && languajeText != "" && autorText != "" && tipoTransaccion != "" && condicion != "" && photo) {
             print("subo a la base de datos")
             Toast.makeText(this@UploadActivity, "Libro cargado con exito", Toast.LENGTH_LONG).show()
+            Log.d("Imagen en base 64", bitmapPhotoTaken)
+            // decodifico base64
+            val data = Base64.getDecoder().decode(bitmapPhotoTaken)
+            val bitmapDecodedImage: Bitmap
+            val opt = BitmapFactory.Options()
+            opt.inMutable = true
+            bitmapDecodedImage = BitmapFactory.decodeByteArray(data, 0, data.size, opt)
+            //fin de la decocdificacion
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         } else {
@@ -135,15 +147,18 @@ class UploadActivity : AppCompatActivity() {
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
             val takenImage = data?.extras?.get("data") as Bitmap
             val fullImage = BitmapFactory.decodeFile(photofile.absolutePath)
-            print(fullImage)
-            print(photofile.absolutePath)
+            // convert bitmap to base 64
+            val baos = ByteArrayOutputStream()
+            fullImage.compress(Bitmap.CompressFormat.JPEG, 50, baos)
+            val bai = baos.toByteArray()
+            val base64Image = Base64.getEncoder().encodeToString(bai)
+            bitmapPhotoTaken = base64Image
             Log.d("Path de la image", photofile.absolutePath)
             val imageView = findViewById<ImageView>(R.id.photo)
             imageView.setImageBitmap(takenImage)
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
-
         super.onActivityResult(requestCode, resultCode, data)
     }
 

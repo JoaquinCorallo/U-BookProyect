@@ -310,8 +310,7 @@
                     android:paddingEnd="4dp"
                     android:paddingBottom="4dp"
                     android:singleLine="true"
-                    android:inputType="number"
-                    android:maxLength="10"
+                    android:maxLength="100"
                     app:hintEnabled="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -346,7 +345,7 @@
                     android:paddingEnd="4dp"
                     android:paddingBottom="4dp"
                     android:singleLine="true"
-                    android:maxLength="20"
+                    android:maxLength="100"
                     app:hintEnabled="false" />
             </com.google.android.material.textfield.TextInputLayout>
 

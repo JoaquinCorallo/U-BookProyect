@@ -14,12 +14,12 @@ class BookList : AppCompatActivity() {
 
         binding.recycler.adapter = BookAdapter(
             listOf(
-                Book("Book 1", "https://ubookweb.pythonanywhere.com/media/libro/L1.webp","","","","","", ""),
-                Book("Book 2", "https://ubookweb.pythonanywhere.com/media/libro/L2.webp","","","","","","" ),
-                Book("Book 3", "https://ubookweb.pythonanywhere.com/media/libro/L3.webp","","","","","","" ),
-                Book("Book 4", "https://ubookweb.pythonanywhere.com/media/libro/L4.webp","","","","","","" ),
-                Book("Book 5", "https://ubookweb.pythonanywhere.com/media/libro/L5.webp","","","","","","" ),
-                Book("Book 6", "https://ubookweb.pythonanywhere.com/media/libro/L6.webp","","","","","","" ),
+                Book(1,"Book 1", "https://ubookweb.pythonanywhere.com/media/libro/L1.webp","","","","Intercambio","",1.99, 1, "", "" ),
+                Book(2, "Book 2", "https://ubookweb.pythonanywhere.com/media/libro/L2.webp","","","","Intercambio","",1.99, 2, "", "" ),
+                Book(3, "Book 3", "https://ubookweb.pythonanywhere.com/media/libro/L3.webp","","","","Venta","",1.99, 3, "", "" ),
+                Book(4, "Book 4", "https://ubookweb.pythonanywhere.com/media/libro/L4.webp","","","","Venta","",1.99, 4, "", "" ),
+                Book(5, "Book 5", "https://ubookweb.pythonanywhere.com/media/libro/L5.webp","","","","Donación","",1.99, 5, "", "" ),
+                Book(6, "Book 6", "https://ubookweb.pythonanywhere.com/media/libro/L6.webp","","","","Donación","",1.99, 6, "", "" ),
             )
         ) { book ->
             Toast.makeText(this@BookList, book.title, Toast.LENGTH_LONG).show()

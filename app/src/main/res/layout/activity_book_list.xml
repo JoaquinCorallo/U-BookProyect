@@ -21,5 +21,6 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
             tools:listitem="@layout/view_book_item" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

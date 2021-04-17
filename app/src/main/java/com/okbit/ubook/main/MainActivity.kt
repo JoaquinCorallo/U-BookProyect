@@ -6,15 +6,25 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.okbit.ubook.R
 import com.okbit.ubook.Upload.UploadActivity
 import com.okbit.ubook.crud.BookList
+import com.okbit.ubook.crud.MainBookCrud
 import com.okbit.ubook.databinding.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    //private lateinit var firebaseAnalytics: FirebaseAnalytics
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Firebase eventos
+        val analytics = FirebaseAnalytics.getInstance(this)
+        val bundle = Bundle()
+        bundle.putString("message", "Integracion Firebase completa")
+        analytics.logEvent("InitScreen", bundle)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val locale = Locale("es", "es")
@@ -44,10 +54,19 @@ class MainActivity : AppCompatActivity() {
         binding.listBtn.setOnClickListener {
             openBookList()
         }
+
+        binding.crudBtn.setOnClickListener {
+            openCrudBook()
+        }
     }
 
     private fun openBookList() {
         val intent = Intent(this, BookList::class.java)
+        startActivity(intent)
+    }
+
+    private fun openCrudBook() {
+        val intent = Intent(this, MainBookCrud::class.java)
         startActivity(intent)
     }
 }

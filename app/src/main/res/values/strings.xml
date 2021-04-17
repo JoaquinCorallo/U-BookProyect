@@ -36,6 +36,7 @@
     <string name="libro_precio">Precio</string>
     <string name="modo">Modo</string>
     <string name="InfoLibro">Agregar Libro</string>
+    <string name="bk_empty_view">No hay libros disponible</string>
     <string-array name="tipoTransaccionArray">
         <item> </item>
         <item>Venta</item>

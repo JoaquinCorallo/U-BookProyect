@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "books")
-data class Book(@PrimaryKey val id: Int,
+data class Book(@PrimaryKey(autoGenerate = true) val id: Int,
                 val title: String,
                 val cover: String, //base64
                 val author: String,

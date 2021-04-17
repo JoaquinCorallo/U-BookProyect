@@ -2,8 +2,12 @@ package com.okbit.ubook.crud
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils.isEmpty
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.okbit.ubook.databinding.ActivityBookListBinding
 
 class BookList : AppCompatActivity() {
@@ -13,7 +17,7 @@ class BookList : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.recycler.adapter = BookAdapter(
-            listOf(
+           listOf(
                 Book(1,"Book 1", "https://ubookweb.pythonanywhere.com/media/libro/L1.webp","","","","Intercambio","",1.99, 1, "", "" ),
                 Book(2, "Book 2", "https://ubookweb.pythonanywhere.com/media/libro/L2.webp","","","","Intercambio","",1.99, 2, "", "" ),
                 Book(3, "Book 3", "https://ubookweb.pythonanywhere.com/media/libro/L3.webp","","","","Venta","",1.99, 3, "", "" ),
@@ -24,6 +28,7 @@ class BookList : AppCompatActivity() {
         ) { book ->
             Toast.makeText(this@BookList, book.title, Toast.LENGTH_LONG).show()
         }
+
     }
 
     override fun onDestroy() {

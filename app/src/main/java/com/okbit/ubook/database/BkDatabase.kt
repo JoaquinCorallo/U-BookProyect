@@ -9,18 +9,26 @@ import java.security.AccessControlContext
 
 @Database(entities = [Book::class], version = 1)
 abstract class BkDatabase: RoomDatabase() {
-    abstract val bookDao: BookDao
-}
+    abstract fun bookDao(): BookDao?
 
-private lateinit var INSTANCE: BkDatabase
+    companion object {
+        private var INSTANCE: BkDatabase?= null
 
-fun getDatabase(context: Context): BkDatabase {
-    synchronized(BkDatabase::class.java) {
-        if (!::INSTANCE.isInitialized) {
-            INSTANCE = Room.databaseBuilder(context.applicationContext, BkDatabase::class.java,
-            "books_db"
-            ).build()
+        fun getAppDatabase(context: Context): BkDatabase? {
+
+            if(INSTANCE == null ) {
+
+                INSTANCE = Room.databaseBuilder<BkDatabase>(
+                    context.applicationContext, BkDatabase::class.java, "BookDB"
+                )
+                    .allowMainThreadQueries()
+                    .build()
+
+            }
+            return INSTANCE
         }
-        return INSTANCE
+        fun destroyInstance() {
+            INSTANCE = null
+        }
     }
 }

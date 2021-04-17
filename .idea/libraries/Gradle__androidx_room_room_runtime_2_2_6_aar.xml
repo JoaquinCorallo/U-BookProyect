@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.room:room-runtime:2.2.6@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9f7fae1e5e4a81009929983ca035cff6/room-runtime-2.2.6/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/928aa836f95a6ca8f3e5188acf7f7528/room-runtime-2.2.6/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9f7fae1e5e4a81009929983ca035cff6/room-runtime-2.2.6/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9f7fae1e5e4a81009929983ca035cff6/room-runtime-2.2.6/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9f7fae1e5e4a81009929983ca035cff6/room-runtime-2.2.6/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/928aa836f95a6ca8f3e5188acf7f7528/room-runtime-2.2.6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/928aa836f95a6ca8f3e5188acf7f7528/room-runtime-2.2.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/928aa836f95a6ca8f3e5188acf7f7528/room-runtime-2.2.6/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

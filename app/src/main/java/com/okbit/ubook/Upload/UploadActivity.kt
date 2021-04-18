@@ -13,10 +13,12 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.*
+import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.firestore.FirebaseFirestore
 import com.okbit.ubook.R
 import com.okbit.ubook.main.MainActivity
 import java.io.ByteArrayOutputStream
@@ -25,13 +27,18 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-private var FILE_NAME = "Book" + SimpleDateFormat("yyyyMMdd_HHmmss_", Locale.getDefault()).format(Date())
+private var FILE_NAME = "Book" + SimpleDateFormat("yyyyMMdd_HHmmss_", Locale.getDefault()).format(
+    Date()
+)
 private const val REQUEST_CODE = 13
 private lateinit var photofile: File
 var isPhotoTaken = false
 var bitmapPhotoTaken = ""
 
 class UploadActivity : AppCompatActivity() {
+    // Create DB Instance
+    private val db = FirebaseFirestore.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload)
@@ -44,6 +51,11 @@ class UploadActivity : AppCompatActivity() {
         val controlAutor = findViewById<TextInputLayout>(R.id.autorInput)
         val alertImageView = findViewById<ImageView>(R.id.photo)
         val button = findViewById<Button>(R.id.agregarFoto)
+        val descripcion = findViewById<TextInputLayout>(R.id.descripcionInput)
+        val precio = findViewById<TextInputLayout>(R.id.precioInput)
+        val isbn = findViewById<TextInputLayout>(R.id.isbnInput)
+        val puntoEntrega = findViewById<TextInputLayout>(R.id.paginasInput)
+        val contacto = findViewById<TextInputLayout>(R.id.edadInput)
 
         // Floating Action Button
         val actionButton = findViewById<FloatingActionButton>(R.id.addBook)
@@ -54,12 +66,29 @@ class UploadActivity : AppCompatActivity() {
             val controlAutorText = controlAutor.editText?.text.toString()
             val controlTipoTransaccionText = staticSpinner.selectedItem.toString()
             val controlCondicionText = staticSpinner2.selectedItem.toString()
+            val descripcionText = descripcion.editText?.text.toString()
+            val precioText = precio.editText?.text.toString()
+            val isbnText = isbn.editText?.text.toString()
+            val puntoEntregaText = puntoEntrega.editText?.text.toString()
+            val contactoText = contacto.editText?.text.toString()
+
             AlertDialog.Builder(this)
                     .setTitle(alertBookTitleText)
                     .setMessage("Estas seguro que deseas publicar este libro?")
                     .setIcon(alertBookThumbnail)
                     .setPositiveButton("Si", DialogInterface.OnClickListener { _, _ ->
-                        confirm(alertBookTitleText, controlLanguageText, controlAutorText, controlTipoTransaccionText, controlCondicionText, isPhotoTaken
+                        confirm(
+                            alertBookTitleText,
+                            controlLanguageText,
+                            controlAutorText,
+                            controlTipoTransaccionText,
+                            controlCondicionText,
+                            isPhotoTaken,
+                            descripcionText,
+                            precioText,
+                            isbnText,
+                            puntoEntregaText,
+                            contactoText
                         )
                     })
                     .setNegativeButton("Volver a editar", null).show()
@@ -69,29 +98,40 @@ class UploadActivity : AppCompatActivity() {
 
         // Create an ArrayAdapter using the string array and a default spinner
         val staticAdapter = ArrayAdapter
-                .createFromResource(this, R.array.tipoTransaccionArray,
-                        android.R.layout.simple_spinner_item)
-
-        // Specify the layout to use when the list of choices appears
+                .createFromResource(
+                    this, R.array.tipoTransaccionArray,
+                    android.R.layout.simple_spinner_item
+                )
 
         // Specify the layout to use when the list of choices appears
         staticAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         // Apply the adapter to the spinner
-
-        // Apply the adapter to the spinner
         staticSpinner.adapter = staticAdapter
 
-
-        // Create an ArrayAdapter using the string array and a default spinner
+        //hide price
+        staticSpinner.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
+            ) {
+                precio.isEnabled = position == 1
+            }
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                precio.isEnabled = false;
+            }
+        }
+        //finish hide price
 
         // Create an ArrayAdapter using the string array and a default spinner
         val staticAdapter2 = ArrayAdapter
-                .createFromResource(this, R.array.condicionArray,
-                        android.R.layout.simple_spinner_item)
-
-        // Specify the layout to use when the list of choices appears
+                .createFromResource(
+                    this, R.array.condicionArray,
+                    android.R.layout.simple_spinner_item
+                )
 
         // Specify the layout to use when the list of choices appears
         staticAdapter2
@@ -108,7 +148,11 @@ class UploadActivity : AppCompatActivity() {
             photofile = getPhotoFile(FILE_NAME)
 
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photofile)
-            val fileProvider = FileProvider.getUriForFile(this, "com.okbit.ubook.fileprovider", photofile)
+            val fileProvider = FileProvider.getUriForFile(
+                this,
+                "com.okbit.ubook.fileprovider",
+                photofile
+            )
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider)
             try {
                 startActivityForResult(takePictureIntent, REQUEST_CODE)
@@ -119,9 +163,46 @@ class UploadActivity : AppCompatActivity() {
         }
     }
 
-    private fun confirm(titleText: String, languajeText: String, autorText: String, tipoTransaccion: String, condicion: String, photo: Boolean) {
-        if (titleText != "" && languajeText != "" && autorText != "" && tipoTransaccion != "" && condicion != "" && photo) {
+    private fun confirm(
+        titleText: String,
+        languajeText: String,
+        autorText: String,
+        tipoTransaccion: String,
+        condicion: String,
+        photo: Boolean,
+        descripcion: String,
+        precio: String,
+        isbn: String,
+        puntoEntregaText: String,
+        contactoText: String
+    ) {
+        if (titleText != "" && languajeText != "" && puntoEntregaText != "" && contactoText != "" && autorText != "" && tipoTransaccion != "" && condicion != "" && photo) {
             print("subo a la base de datos")
+            //Upload to DB
+            try {
+                val book = hashMapOf(
+                    "title" to titleText,
+                    "descripcion" to descripcion,
+                    "tipoTransaccion" to tipoTransaccion,
+                    "precio" to precio,
+                    "condicion" to condicion,
+                    "lenguaje" to languajeText,
+                    "autor" to autorText,
+                    "isbn" to isbn,
+                    "puntoEntrega" to puntoEntregaText,
+                    "contacto" to contactoText,
+                    "img" to bitmapPhotoTaken
+                )
+                db.collection("books").add(book)
+            } catch (t: Throwable) {
+                Log.d("Failed to upload book", t.toString())
+                Toast.makeText(
+                    this@UploadActivity,
+                    "No se pudo cargar el libro, intentelo de nuevo",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+            //Finish Upload to DB
             Toast.makeText(this@UploadActivity, "Libro cargado con exito", Toast.LENGTH_LONG).show()
             Log.d("Imagen en base 64", bitmapPhotoTaken)
             // decodifico base64
@@ -134,7 +215,11 @@ class UploadActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         } else {
-            Toast.makeText(this@UploadActivity, "Debes llenar todos los campos obligatorios marcados con *", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                this@UploadActivity,
+                "Debes llenar todos los campos obligatorios marcados con *",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 
@@ -149,7 +234,7 @@ class UploadActivity : AppCompatActivity() {
             val fullImage = BitmapFactory.decodeFile(photofile.absolutePath)
             // convert bitmap to base 64
             val baos = ByteArrayOutputStream()
-            fullImage.compress(Bitmap.CompressFormat.JPEG, 50, baos)
+            fullImage.compress(Bitmap.CompressFormat.JPEG, 90, baos)
             val bai = baos.toByteArray()
             val base64Image = Base64.getEncoder().encodeToString(bai)
             bitmapPhotoTaken = base64Image

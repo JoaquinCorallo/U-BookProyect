@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.okbit.ubook">
+    package="com.okbit.ubook"
+    android:screenOrientation="portrait">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -22,12 +23,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ubook">
-        <activity android:name=".crud.MainBookCrud"></activity>
-        <activity android:name=".Upload.UploadActivity" />
+        <activity android:name=".crud.MainBookCrud" />
+        <activity android:name=".Upload.UploadActivity"
+                  android:screenOrientation="portrait"/>
         <activity
             android:name=".crud.BookList"
             android:label="@string/title_activity_book_list" />
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".main.MainActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

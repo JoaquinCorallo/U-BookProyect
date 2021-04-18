@@ -24,7 +24,7 @@
     <string name="libro_titulo">Titulo *</string>
     <string name="libro_descripcion">Descripción</string>
     <string name="libro_categoria">Categoria *</string>
-    <string name="libro_contacto">Contacto *</string>
+    <string name="libro_contacto">Contacto(Teléfono o Email) *</string>
     <string name="libro_punto_de_entrega">Punto de entrega *</string>
     <string name="libro_idioma">Idioma *</string>
     <string name="libro_dimensiones">Dimensiones</string>

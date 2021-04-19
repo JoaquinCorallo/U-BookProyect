@@ -50,4 +50,5 @@
         <item>Romance</item>
         <item>Aventura</item>
     </string-array>
+    <string name="title_activity_maps_books">Map</string>
 </resources>

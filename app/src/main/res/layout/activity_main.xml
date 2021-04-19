@@ -22,7 +22,6 @@
         android:id="@+id/btn_find"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="@string/btn_find"
         android:textColor="#FFFFFF"
         app:icon="@android:drawable/ic_menu_search"

@@ -14,6 +14,7 @@ import com.okbit.ubook.Upload.UploadActivity
 import com.okbit.ubook.crud.BookList
 import com.okbit.ubook.crud.MainBookCrud
 import com.okbit.ubook.databinding.ActivityMainBinding
+import com.okbit.ubook.find.MapsBooksActivity
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -58,6 +59,15 @@ class MainActivity : AppCompatActivity() {
         binding.crudBtn.setOnClickListener {
             openCrudBook()
         }
+
+        binding.btnFind.setOnClickListener {
+            openMapBook()
+        }
+    }
+
+    private fun openMapBook() {
+        val intent = Intent(this, MapsBooksActivity::class.java)
+        startActivity(intent)
     }
 
     private fun openBookList() {

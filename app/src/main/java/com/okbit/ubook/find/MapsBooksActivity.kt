@@ -11,6 +11,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.okbit.ubook.R
 
+
 class MapsBooksActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
@@ -57,8 +58,8 @@ class MapsBooksActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         // Add a marker in Zoo Villa Dolores and move the camera
-        val zooVillaDolores = LatLng(-34.9007339, -56.1474546)
-        mMap.addMarker(MarkerOptions().position(zooVillaDolores).title("Marker in Zoo"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(zooVillaDolores, 13.0f))
+        val villa = LatLng(-34.9007339, -56.1474546)
+        mMap.addMarker(MarkerOptions().position(villa).title("Villa dolores"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(villa, 13.0f))
     }
 }

@@ -1,5 +1,6 @@
 package com.okbit.ubook.crud
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils.isEmpty
@@ -26,9 +27,15 @@ class BookList : AppCompatActivity() {
                 Book(6, "Book 6", "https://ubookweb.pythonanywhere.com/media/libro/L6.webp","","","","Donación","",1.99, 6, "", "" ),
             )
         ) { book ->
-            Toast.makeText(this@BookList, book.title, Toast.LENGTH_LONG).show()
+            navigateTo(book)
         }
 
+    }
+
+    private fun navigateTo(book: Book) {
+        val intent = Intent(this, DetailBookActivity::class.java)
+        intent.putExtra(DetailBookActivity.EXTRA_TITLE, book.title)
+        startActivity(intent)
     }
 
     override fun onDestroy() {

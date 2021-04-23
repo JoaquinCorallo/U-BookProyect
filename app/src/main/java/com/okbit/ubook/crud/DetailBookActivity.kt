@@ -2,12 +2,16 @@ package com.okbit.ubook.crud
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
+import androidx.core.text.bold
+import androidx.core.text.buildSpannedString
+import com.bumptech.glide.Glide
 import com.okbit.ubook.databinding.ActivityDetailBookBinding
 
 class DetailBookActivity : AppCompatActivity() {
 
     companion object {
-        const val EXTRA_TITLE = "DetailBookActivity:title"
+        const val EXTRA_BOOK = "DetailBookActivity:book"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +19,35 @@ class DetailBookActivity : AppCompatActivity() {
         val binding = ActivityDetailBookBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val title = intent.getStringExtra(EXTRA_TITLE)
-        binding.titledetail.text = title
+        val book = intent.getParcelableExtra<Book>(EXTRA_BOOK)
+        if (book != null) {
+            title = book.title
+            Glide
+                .with(this)
+                .load(book.cover)
+                .into(binding.backdrop)
+            binding.autordetail.text = book.author
+            binding.categoriadetail.text = book.category
+            binding.condiciondetail.text = book.condition
+            binding.titledetail.text = book.title
+            binding.descripciondetail.text = book.description
+            bindingInfoDetail(binding.infodetail, book)
+        }
+
+
+    }
+
+    private fun bindingInfoDetail(infodetail: TextView, book: Book) {
+        infodetail.text = buildSpannedString {
+            bold { append("Idioma: ") }
+            appendLine(book.language)
+
+            bold { append("Contacto: ") }
+            appendLine(book.contact)
+
+            bold { append("Zona de entrega: ") }
+            appendLine(book.delivery)
+        }
+
     }
 }

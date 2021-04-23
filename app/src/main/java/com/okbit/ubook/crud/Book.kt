@@ -1,18 +1,20 @@
 package com.okbit.ubook.crud
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-@Entity(tableName = "books")
-data class Book(@PrimaryKey(autoGenerate = true) val id: Int,
-                val title: String,
-                val cover: String, //base64
-                val author: String,
-                val category: String,
-                val description: String,
-                val condition: String,
-                val contact: String,
-                val price: Double,
-                val isbn: Int,
-                val language: String,
-                val delivery: String)
+@Parcelize
+data class Book(
+    val id: Int,
+    val title: String,
+    val cover: String,
+    val author: String,
+    val category: String,
+    val description: String,
+    val condition: String,
+    val contact: String,
+    val price: Double,
+    val isbn: Int,
+    val language: String,
+    val delivery: String
+    ) : Parcelable

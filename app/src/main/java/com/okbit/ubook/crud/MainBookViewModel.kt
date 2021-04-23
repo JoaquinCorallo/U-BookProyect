@@ -1,5 +1,5 @@
 package com.okbit.ubook.crud
-
+/*
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -19,4 +19,4 @@ class MainBookViewModel: ViewModel() {
     private fun fetchBook() {
         TODO("Not yet implemented")
     }
-}
+}*/

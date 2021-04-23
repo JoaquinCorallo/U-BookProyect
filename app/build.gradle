@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
@@ -34,10 +35,12 @@ android {
         viewBinding = true
         dataBinding = true
     }
+    dataBinding {
+        enabled = true
+    }
 
 }
 
-apply plugin: 'kotlin-kapt'
 
 dependencies {
 
@@ -65,8 +68,8 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
 
     // Room
-    implementation 'androidx.room:room-runtime:2.2.6'
-    kapt 'androidx.room:room-compiler:2.2.6'
+    implementation 'androidx.room:room-runtime:2.3.0'
+    kapt 'androidx.room:room-compiler:2.3.0'
 
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
 

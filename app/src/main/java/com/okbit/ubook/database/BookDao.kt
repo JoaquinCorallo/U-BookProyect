@@ -3,7 +3,7 @@ package com.okbit.ubook.database
 import androidx.room.*
 import com.okbit.ubook.crud.Book
 
-@Dao
+/*@Dao
 interface BookDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(bkList: Book)
@@ -19,4 +19,4 @@ interface BookDao {
 
     @Delete
     fun deleteBk(vararg  bk: Book)
-}
+}*/

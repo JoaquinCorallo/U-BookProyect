@@ -28,7 +28,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ubook">
-        <activity android:name=".crud.DetailBookActivity"></activity>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -51,6 +51,8 @@
         <activity
             android:name=".crud.BookList"
             android:label="@string/title_activity_book_list" />
+        <activity android:name=".crud.DetailBookActivity"
+            android:parentActivityName=".crud.BookList"/>
         <activity
             android:name=".main.MainActivity"
             android:screenOrientation="portrait">

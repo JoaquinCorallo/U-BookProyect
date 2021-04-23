@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.okbit.ubook.crud.Book
 import java.security.AccessControlContext
 
-@Database(entities = [Book::class], version = 1)
+/*@Database(entities = [Book::class], version = 1)
 abstract class BkDatabase: RoomDatabase() {
     abstract fun bookDao(): BookDao?
 
@@ -31,4 +31,4 @@ abstract class BkDatabase: RoomDatabase() {
             INSTANCE = null
         }
     }
-}
+}*/

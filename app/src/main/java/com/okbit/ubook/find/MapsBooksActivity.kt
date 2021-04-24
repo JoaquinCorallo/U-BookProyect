@@ -1,12 +1,17 @@
 package com.okbit.ubook.find
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.okbit.ubook.R
@@ -49,17 +54,30 @@ class MapsBooksActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        val icon = getBookIcon()
+
         //iteracion lista de zonas
         for (zoneBook in zoneBooks) {
             val zonePosition = LatLng(zoneBook.latitude, zoneBook.longitude)
             val zoneName = zoneBook.name
 
-            mMap.addMarker(MarkerOptions().position(zonePosition).title(zoneName))
+            val markerOptions = MarkerOptions().position(zonePosition).title(zoneName).icon(icon)
+            mMap.addMarker(markerOptions)
         }
 
         // Add a marker in Zoo Villa Dolores and move the camera
         val villa = LatLng(-34.9007339, -56.1474546)
         mMap.addMarker(MarkerOptions().position(villa).title("Villa dolores"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(villa, 13.0f))
+    }
+
+    private fun getBookIcon(): BitmapDescriptor {
+        val drawable = ContextCompat.getDrawable(this, R.drawable.icon40px)
+        drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+        val bitmap = Bitmap.createBitmap(drawable?.intrinsicWidth ?: 0,
+            drawable?.intrinsicHeight ?: 0, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        drawable?.draw(canvas)
+        return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
 }

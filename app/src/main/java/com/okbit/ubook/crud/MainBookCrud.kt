@@ -36,6 +36,10 @@ class MainBookCrud : AppCompatActivity() {
             saveBook()
         }
 
+        binding.buttonGet.setOnClickListener{
+            getAllBook()
+        }
+
     }
 
     private fun openList() {
@@ -57,7 +61,15 @@ class MainBookCrud : AppCompatActivity() {
             "language" to "",
             "delivery" to "",
         )
-        db.collection("books").add(book)
+        db.collection("test").add(book)
+    }
+
+    private fun getAllBook() {
+        db.collection("books").get().addOnSuccessListener {
+            result -> for (libro in result){
+                Log.d("datos doc: ", "$libro.id ${libro.data}")
+            }
+        }
     }
 
 }

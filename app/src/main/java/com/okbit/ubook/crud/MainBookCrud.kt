@@ -45,8 +45,17 @@ class MainBookCrud : AppCompatActivity() {
 
     private fun saveBook() {
         val book = hashMapOf(
-            "title" to "caballo",
-            "condition" to "venta"
+            "title" to "",
+            "condition" to "",
+            "cover" to "",
+            "author" to "",
+            "category" to "",
+            "description" to "",
+            "contact" to "",
+            "price" to "",
+            "isbn" to "",
+            "language" to "",
+            "delivery" to "",
         )
         db.collection("books").add(book)
     }

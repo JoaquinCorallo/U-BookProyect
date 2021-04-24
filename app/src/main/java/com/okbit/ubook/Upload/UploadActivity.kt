@@ -182,16 +182,16 @@ class UploadActivity : AppCompatActivity() {
             try {
                 val book = hashMapOf(
                     "title" to titleText,
-                    "descripcion" to descripcion,
-                    "tipoTransaccion" to tipoTransaccion,
-                    "precio" to precio,
-                    "condicion" to condicion,
-                    "lenguaje" to languajeText,
-                    "autor" to autorText,
+                    "description" to descripcion,
+                    "condition" to tipoTransaccion,
+                    "price" to precio,
+                    "category" to condicion,
+                    "language" to languajeText,
+                    "author" to autorText,
                     "isbn" to isbn,
-                    "puntoEntrega" to puntoEntregaText,
-                    "contacto" to contactoText,
-                    "img" to bitmapPhotoTaken
+                    "delivery" to puntoEntregaText,
+                    "contact" to contactoText,
+                    "cover" to bitmapPhotoTaken
                 )
                 db.collection("books").add(book)
             } catch (t: Throwable) {

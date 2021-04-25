@@ -28,7 +28,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ubook">
-
+        <activity android:name=".main.SplashScreen"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -51,17 +57,13 @@
         <activity
             android:name=".crud.BookList"
             android:label="@string/title_activity_book_list" />
-        <activity android:name=".crud.DetailBookActivity"
-            android:parentActivityName=".crud.BookList"/>
+        <activity
+            android:name=".crud.DetailBookActivity"
+            android:parentActivityName=".crud.BookList" />
         <activity
             android:name=".main.MainActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait"
+            />
 
         <provider
             android:name="androidx.core.content.FileProvider"

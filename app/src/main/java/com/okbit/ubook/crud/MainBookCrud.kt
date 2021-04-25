@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.get
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
@@ -36,7 +37,14 @@ class MainBookCrud : AppCompatActivity() {
             saveBook()
         }
 
-        binding.buttonGet.setOnClickListener{
+        binding.buttonGet.setOnClickListener {
+            db.collection("books").document("9NMYXGkqEbGbZIliQ53t").get().addOnSuccessListener {
+                binding.tvTitle.setText(it.get("title") as String?)
+                binding.tvAuthor.setText(it.get("author") as String?)
+            }
+        }
+
+        binding.buttonDelete.setOnClickListener {
             getAllBook()
         }
 
@@ -49,28 +57,31 @@ class MainBookCrud : AppCompatActivity() {
 
     private fun saveBook() {
         val book = hashMapOf(
-            "title" to "",
-            "condition" to "",
-            "cover" to "",
-            "author" to "",
-            "category" to "",
-            "description" to "",
-            "contact" to "",
-            "price" to "",
-            "isbn" to "",
-            "language" to "",
-            "delivery" to "",
+                "title" to "",
+                "condition" to "",
+                "cover" to "",
+                "author" to "",
+                "category" to "",
+                "description" to "",
+                "contact" to "",
+                "price" to "",
+                "isbn" to "",
+                "language" to "",
+                "delivery" to "",
         )
         db.collection("test").add(book)
     }
 
+
     private fun getAllBook() {
-        db.collection("books").get().addOnSuccessListener {
-            result -> for (libro in result){
-                Log.d("datos doc: ", "$libro.id ${libro.data}")
+        db.collection("books").get().addOnSuccessListener { result ->
+            for (libro in result) {
+
+                Log.d("datos doc: ", "$libro.id ${libro.data.values}")
+
             }
         }
     }
-
 }
+
 

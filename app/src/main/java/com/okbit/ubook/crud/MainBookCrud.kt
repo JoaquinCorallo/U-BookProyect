@@ -38,10 +38,19 @@ class MainBookCrud : AppCompatActivity() {
         }
 
         binding.buttonGet.setOnClickListener {
-            db.collection("books").document("9NMYXGkqEbGbZIliQ53t").get().addOnSuccessListener {
+            /*db.collection("books").document("9NMYXGkqEbGbZIliQ53t").get().addOnSuccessListener {
                 binding.tvTitle.setText(it.get("title") as String?)
                 binding.tvAuthor.setText(it.get("author") as String?)
-            }
+            }*/
+            db.collection("books")
+                .get()
+                .addOnSuccessListener { result ->
+                    Log.d("BookFs", " Size " + result.size())
+                    for (document in result) {
+                        Log.d("BookFs", "${document.id} => ${document.data.values}")
+                    }
+                }
+
         }
 
         binding.buttonDelete.setOnClickListener {

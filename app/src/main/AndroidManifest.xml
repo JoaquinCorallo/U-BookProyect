@@ -28,10 +28,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ubook">
-        <activity android:name=".main.SplashScreen"
+        <activity android:name=".book.BookActivity"></activity>
+        <activity
+            android:name=".main.SplashScreen"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -62,8 +65,7 @@
             android:parentActivityName=".crud.BookList" />
         <activity
             android:name=".main.MainActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

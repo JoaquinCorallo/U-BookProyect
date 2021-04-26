@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.okbit.ubook.R
 
 private  const val  TAG: String = "HOMEPAGE_LOG"
@@ -36,8 +37,11 @@ class BookActivity : AppCompatActivity() {
             loadBookData()
         }
         // init recycler view
-       firestoreList.LayoutManager = LinearLayoutManager(this)
-        firestoreList.adapter = bookListAdapter
+        var firestore = findViewById<RecyclerView>(R.id.firestoreList)
+        firestore.layoutManager = LinearLayoutManager(this)
+        firestore.adapter = bookListAdapter
+
+
     }
 
     private fun loadBookData() {
@@ -46,6 +50,7 @@ class BookActivity : AppCompatActivity() {
                 bookList = it.result!!.toObjects(BookModel::class.java)
                 bookListAdapter.bookListItems = bookList
                 bookListAdapter.notifyDataSetChanged()
+
 
             } else {
                 Log.d(TAG, "Error: ${it.exception!!.message}")

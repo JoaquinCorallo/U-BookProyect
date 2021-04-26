@@ -3,27 +3,32 @@ package com.okbit.ubook.book
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.okbit.ubook.R
 
+
 private const val POST_TYPE_DESC: Int = 0
 private const val POST_TYPE_IMAGE: Int = 1
+
+
 
 class BookListAdapter(var bookListItems: List<BookModel>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     //view holders for all types of items
     class  DescViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         fun bind(bookModel: BookModel){
-            itemView.descBookTitle.text = bookModel.title
-            itemView.descBookAuthor.text = bookModel.author
+            descBookTitle.text = bookModel.title
+            descBookAuthor.text = bookModel.author
+
         }
 
     }
 
     class  ImageViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         fun bind(bookModel: BookModel){
-            itemView.imageBookTitle.text = bookModel.title
+            //itemView.imageBookTitle.text = bookModel.title
         }
     }
 

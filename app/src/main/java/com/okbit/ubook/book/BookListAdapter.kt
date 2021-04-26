@@ -12,15 +12,13 @@ import com.okbit.ubook.R
 private const val POST_TYPE_DESC: Int = 0
 private const val POST_TYPE_IMAGE: Int = 1
 
-
-
 class BookListAdapter(var bookListItems: List<BookModel>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     //view holders for all types of items
     class  DescViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         fun bind(bookModel: BookModel){
-            descBookTitle.text = bookModel.title
-            descBookAuthor.text = bookModel.author
+            //descBookTitle.text = bookModel.title
+            //descBookAuthor.text = bookModel.author
 
         }
 

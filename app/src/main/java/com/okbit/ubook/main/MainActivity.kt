@@ -52,31 +52,64 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.listBtn.setOnClickListener {
-            openBookList()
-        }
 
-        binding.crudBtn.setOnClickListener {
-            openCrudBook()
-        }
 
         binding.btnFind.setOnClickListener {
-            openMapBook()
+            openBookList()
         }
     }
 
-    private fun openMapBook() {
-        val intent = Intent(this, MapsBooksActivity::class.java)
-        startActivity(intent)
-    }
+
 
     private fun openBookList() {
         val intent = Intent(this, BookList::class.java)
         startActivity(intent)
     }
 
-    private fun openCrudBook() {
+
+}
+
+
+/*
+binding.listBtn.setOnClickListener {
+            openBookList()
+        }
+
+        binding.crudBtn.setOnClickListener {
+            openCrudBook()
+        }
+        private fun openCrudBook() {
         val intent = Intent(this, MainBookCrud::class.java)
         startActivity(intent)
     }
-}
+
+    private fun openMapBook() {
+        val intent = Intent(this, MapsBooksActivity::class.java)
+        startActivity(intent)
+    }
+    <Button
+        android:id="@+id/listBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_list"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.751" />
+
+    <Button
+        android:id="@+id/crudBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crud Book"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.86" />
+*/

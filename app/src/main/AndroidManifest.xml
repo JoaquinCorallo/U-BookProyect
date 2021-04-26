@@ -52,13 +52,16 @@
 
         <activity
             android:name=".find.MapsBooksActivity"
+            android:parentActivityName=".crud.BookList"
             android:label="@string/title_activity_maps_books" />
         <activity android:name=".crud.MainBookCrud" />
         <activity
             android:name=".Upload.UploadActivity"
+            android:parentActivityName=".main.MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".crud.BookList"
+            android:parentActivityName=".main.MainActivity"
             android:label="@string/title_activity_book_list" />
         <activity
             android:name=".crud.DetailBookActivity"

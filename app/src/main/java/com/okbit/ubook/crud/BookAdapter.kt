@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.okbit.ubook.databinding.ViewBookItemBinding
 
-class BookAdapter(private val books: List<Book>, private val movieClickListener: (Book) -> Unit) : RecyclerView.Adapter<BookAdapter.ViewHolder>() {
+class BookAdapter(private val books: List<Book>,
+                  private val movieClickListener: (Book) -> Unit) : RecyclerView.Adapter<BookAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ViewBookItemBinding.inflate(

@@ -1,5 +1,6 @@
 package com.okbit.ubook.crud
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -7,6 +8,7 @@ import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import com.bumptech.glide.Glide
 import com.okbit.ubook.databinding.ActivityDetailBookBinding
+import com.okbit.ubook.find.MapsBooksActivity
 
 class DetailBookActivity : AppCompatActivity() {
 
@@ -34,6 +36,10 @@ class DetailBookActivity : AppCompatActivity() {
             bindingInfoDetail(binding.infodetail, book)
         }
 
+        binding.myHomeButton.setOnClickListener {
+            openMapBook()
+        }
+
 
     }
 
@@ -49,5 +55,10 @@ class DetailBookActivity : AppCompatActivity() {
             appendLine(book.delivery)
         }
 
+    }
+
+    private fun openMapBook() {
+        val intent = Intent(this, MapsBooksActivity::class.java)
+        startActivity(intent)
     }
 }

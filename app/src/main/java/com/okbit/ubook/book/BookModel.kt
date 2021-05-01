@@ -1,16 +1,38 @@
 package com.okbit.ubook.book
 
-data class BookModel (
-    val id: Int,
-    val title: String,
-    val cover: String,
-    val author: String,
-    val category: String,
-    val description: String,
-    val condition: String,
-    val contact: String,
-    val price: Double,
-    val isbn: Int,
-    val language: String,
-    val delivery: String,
-    )
+import android.os.Parcel
+import android.os.Parcelable
+import com.google.firebase.firestore.IgnoreExtraProperties
+
+@IgnoreExtraProperties
+class BookModel : Parcelable {
+
+    var title: String? = null
+    var author: String? = null
+
+    constructor()
+
+    private constructor(parcel: Parcel) {
+        title = parcel.readString()
+        author = parcel.readString()
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    override fun writeToParcel(dest: Parcel?, flags: Int) {
+        dest?.writeString(title)
+        dest?.writeString(author)
+    }
+
+    companion object CREATOR : Parcelable.Creator<BookModel> {
+        override fun createFromParcel(parcel: Parcel): BookModel {
+            return BookModel(parcel)
+        }
+
+        override fun newArray(size: Int): Array<BookModel?> {
+            return arrayOfNulls(size)
+        }
+    }
+}

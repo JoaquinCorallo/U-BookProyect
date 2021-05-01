@@ -25,8 +25,8 @@ class BookAdapter(private val books: List<Book>,
 
     class  ViewHolder(private val binding: ViewBookItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(book: Book){
-            binding.titleBook.text = book.title
-            Glide.with(binding.root.context).load(book.cover).into(binding.cover)
+            binding.itemTitleBook.text = book.title
+            //.with(binding.root.context).load(book.cover).into(binding.cover)
 
         }
     }

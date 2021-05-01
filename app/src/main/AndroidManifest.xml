@@ -10,6 +10,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -28,7 +29,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ubook">
-        <activity android:name=".book.BookActivity"></activity>
+        <activity android:name=".firestore.DetailFirestoreActivity"
+            android:parentActivityName=".firestore.MainFirestoreActivity" />
+        <activity android:name=".firestore.MainFirestoreActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".book.DetailActivity" />
+        <activity android:name=".crud.LibroListaActivity" />
+        <activity android:name=".book.BookActivity" />
         <activity
             android:name=".main.SplashScreen"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
@@ -52,8 +59,8 @@
 
         <activity
             android:name=".find.MapsBooksActivity"
-            android:parentActivityName=".crud.BookList"
-            android:label="@string/title_activity_maps_books" />
+            android:label="@string/title_activity_maps_books"
+            android:parentActivityName=".crud.BookList" />
         <activity android:name=".crud.MainBookCrud" />
         <activity
             android:name=".Upload.UploadActivity"
@@ -61,8 +68,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".crud.BookList"
-            android:parentActivityName=".main.MainActivity"
-            android:label="@string/title_activity_book_list" />
+            android:label="@string/title_activity_book_list"
+            android:parentActivityName=".main.MainActivity" />
         <activity
             android:name=".crud.DetailBookActivity"
             android:parentActivityName=".crud.BookList" />

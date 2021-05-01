@@ -11,10 +11,12 @@ import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
 import com.okbit.ubook.R
 import com.okbit.ubook.Upload.UploadActivity
+import com.okbit.ubook.book.BookActivity
 import com.okbit.ubook.crud.BookList
 import com.okbit.ubook.crud.MainBookCrud
 import com.okbit.ubook.databinding.ActivityMainBinding
 import com.okbit.ubook.find.MapsBooksActivity
+import com.okbit.ubook.firestore.MainFirestoreActivity
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -55,16 +57,21 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.btnFind.setOnClickListener {
-            openBookList()
+            openFireBook()
         }
+
+
+
     }
 
 
-
-    private fun openBookList() {
-        val intent = Intent(this, BookList::class.java)
+    private fun openFireBook() {
+        val intent = Intent(this, MainFirestoreActivity::class.java)
         startActivity(intent)
     }
+
+
+
 
 
 }
@@ -73,6 +80,10 @@ class MainActivity : AppCompatActivity() {
 /*
 binding.listBtn.setOnClickListener {
             openBookList()
+        }
+
+        binding.listBtn.setOnClickListener {
+            openFireBook()
         }
 
         binding.crudBtn.setOnClickListener {
@@ -87,6 +98,12 @@ binding.listBtn.setOnClickListener {
         val intent = Intent(this, MapsBooksActivity::class.java)
         startActivity(intent)
     }
+
+    private fun openBookList() {
+        val intent = Intent(this, BookList::class.java)
+        startActivity(intent)
+    }
+
     <Button
         android:id="@+id/listBtn"
         android:layout_width="wrap_content"

@@ -1,60 +1,47 @@
 package com.okbit.ubook.book
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Adapter.StateRestorationPolicy
+import androidx.recyclerview.widget.RecyclerView.Adapter.StateRestorationPolicy.*
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.okbit.ubook.R
 
-private  const val  TAG: String = "HOMEPAGE_LOG"
 
-class BookActivity : AppCompatActivity() {
+class BookActivity : AppCompatActivity(), BookListAdapter.BookListAdapterListener {
 
-    private  val firebaseRepo: FirebaseRepo = FirebaseRepo()
-
-    private  var bookList: List<BookModel> = ArrayList()
-    private val bookListAdapter: BookListAdapter = BookListAdapter(bookList)
+    private lateinit var adapter: BookListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_book)
+        setContentView(R.layout.activity_main)
 
-        //check user
-        if (firebaseRepo.getUser() == null){
-            //create new user
-            firebaseRepo.createUser().addOnCompleteListener{
-                if (it.isSuccessful){
-                    //load data
-                    loadBookData()
+        val query: Query = FirebaseFirestore.getInstance().collection("books")
 
-                } else {
-                    Log.d(TAG, "Error: ${it.exception!!.message}")
-                }
-            }
-        } else {
-            //user logged in
-            loadBookData()
-        }
-        // init recycler view
-        var firestore = findViewById<RecyclerView>(R.id.firestoreList)
-        firestore.layoutManager = LinearLayoutManager(this)
-        firestore.adapter = bookListAdapter
-
-
+        val recyclerView: RecyclerView = findViewById(R.id.firestoreList)
+        adapter = BookListAdapter(query, this)
+        recyclerView.adapter = adapter
+        adapter.stateRestorationPolicy = PREVENT_WHEN_EMPTY
     }
 
-    private fun loadBookData() {
-        firebaseRepo.getBookList().addOnCompleteListener{
-            if(it.isSuccessful){
-                bookList = it.result!!.toObjects(BookModel::class.java)
-                bookListAdapter.bookListItems = bookList
-                bookListAdapter.notifyDataSetChanged()
+    override fun onStart() {
+        super.onStart()
+        adapter.startListening()
+    }
 
+    override fun onStop() {
+        super.onStop()
+        adapter.startListening()
+    }
 
-            } else {
-                Log.d(TAG, "Error: ${it.exception!!.message}")
-            }
-        }
+    override fun onSportSelected(bookfs: BookModel?) {
+        val intent = Intent(applicationContext, DetailActivity::class.java)
+        intent.putExtra("BOOKS_DETAIL_DATA", bookfs)
+        startActivity(intent)
     }
 }

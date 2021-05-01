@@ -40,7 +40,7 @@ class MapsBooksActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps_books)
-        title = "Zonas de Libros"
+        title = "Zonas de Entrega"
 
         myLocationButton = findViewById(R.id.my_location_button)
 

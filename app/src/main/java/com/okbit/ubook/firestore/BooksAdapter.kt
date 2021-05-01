@@ -1,5 +1,6 @@
 package com.okbit.ubook.firestore
 
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.google.android.material.card.MaterialCardView
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
 import com.okbit.ubook.R
+import java.util.*
 
 class BooksAdapter(
     query: Query,
@@ -27,12 +29,19 @@ class BooksAdapter(
         private val condition: TextView = itemView.findViewById(R.id.item_firestorebook_condition)
         private val portadainicio: ImageView = itemView.findViewById(R.id.item_firestorebook_cover)
 
+
         fun bind(snapshot: DocumentSnapshot, listener: BooksAdapterListener) {
             val books: Books? = snapshot.toObject(Books::class.java)
             title.text = books?.title
             author.text = books?.author
             condition.text = books?.condition
-            Glide.with(itemView.context).load(books?.cover).into(portadainicio)
+            val imageByteArray = Base64.getDecoder().decode(books?.cover)
+            if (books?.cover != "" ){
+                Glide.with(itemView.context).asBitmap().load(imageByteArray).into(portadainicio)
+            }else{
+                Glide.with(itemView.context).load(books?.coverurl).into(portadainicio)
+            }
+
 
             cardView.setOnClickListener {
                 listener.onBookSelected(books)

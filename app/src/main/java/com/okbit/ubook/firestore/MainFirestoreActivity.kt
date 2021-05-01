@@ -9,9 +9,11 @@ import com.google.firebase.firestore.Query
 import com.okbit.ubook.R
 
 
+
 class MainFirestoreActivity : AppCompatActivity(), BooksAdapter.BooksAdapterListener {
 
     private lateinit var adapter: BooksAdapter
+    // lateinit var imageView: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,22 @@ class MainFirestoreActivity : AppCompatActivity(), BooksAdapter.BooksAdapterList
         adapter = BooksAdapter(query, this)
         recyclerView.adapter = adapter
         adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+
+
+
+
+/*
+        imageView = findViewById(R.id.item_firestorebook_cover)
+        val data = Base64.decode(imageView)
+        val bitmapDecodedImage: Bitmap
+        val opt = BitmapFactory.Options()
+        opt.inMutable = true
+        bitmapDecodedImage = BitmapFactory.decodeByteArray(data, 0, data.size, opt)
+
+        val imageView = findViewById<ImageView>(R.id.detailcover)
+        imageView.setImageBitmap(bitmapDecodedImage)
+
+ */
     }
 
     override fun onStart() {

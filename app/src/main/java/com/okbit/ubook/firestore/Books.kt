@@ -10,6 +10,7 @@ class Books : Parcelable {
     var title: String? = null
     var author: String? = null
     var cover: String? = null
+    var coverurl: String? = null
     var category: String? = null
     var description: String? = null
     var condition: String? = null
@@ -25,6 +26,7 @@ class Books : Parcelable {
         title = parcel.readString()
         author = parcel.readString()
         cover = parcel.readString()
+        coverurl = parcel.readString()
         category = parcel.readString()
         description = parcel.readString()
         condition = parcel.readString()
@@ -43,6 +45,7 @@ class Books : Parcelable {
         dest?.writeString(title)
         dest?.writeString(author)
         dest?.writeString(cover)
+        dest?.writeString(coverurl)
         dest?.writeString(category)
         dest?.writeString(description)
         dest?.writeString(condition)

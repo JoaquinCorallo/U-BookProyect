@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.okbit.ubook.R
 import com.okbit.ubook.find.MapsBooksActivity
+import java.util.*
 
 class DetailFirestoreActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +21,12 @@ class DetailFirestoreActivity : AppCompatActivity() {
         val books: Books? = intent.getParcelableExtra("BOOKS_DETAIL_DATA")
         title = books?.title
         val portada = findViewById<ImageView>(R.id.detailcover)
-        Glide.with(this).load(books?.cover).into(portada)
+        val imageByteArray = Base64.getDecoder().decode(books?.cover)
+        if (books?.cover != "" ){
+            Glide.with(this).asBitmap().load(imageByteArray).into(portada)
+        }else{
+            Glide.with(this).load(books?.coverurl).into(portada)
+        }
         findViewById<TextView>(R.id.detailtitle).text = books?.title
         findViewById<TextView>(R.id.detailauthor).text = books?.author
         findViewById<TextView>(R.id.detailcategory).text = books?.category

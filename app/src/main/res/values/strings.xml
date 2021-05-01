@@ -50,5 +50,13 @@
         <item>Romance</item>
         <item>Aventura</item>
     </string-array>
+    <string-array name="libro_punto_de_entrega_array">
+        <item> </item>
+        <item>Zona 1 Montevideo Shopping</item>
+        <item>Zona 2 Tres Cruces Shopping</item>
+        <item>Zona 3 Nuevo Centro Shopping</item>
+        <item>Zona 4 Punta Carreta Shopping</item>
+        <item>Zona 5 Portones Shopping</item>
+    </string-array>
     <string name="title_activity_maps_books">Map</string>
 </resources>

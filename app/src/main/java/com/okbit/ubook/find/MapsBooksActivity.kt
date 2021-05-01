@@ -44,12 +44,12 @@ class MapsBooksActivity : AppCompatActivity(), OnMapReadyCallback {
 
         myLocationButton = findViewById(R.id.my_location_button)
 
-        addFakeZoneBooks() //lista de mapas
+        addZoneBooks() //lista de mapas
 
         requestLocationPermission()
     }
 
-    private fun addFakeZoneBooks() {
+    private fun addZoneBooks() {
         zoneBooks.add(ZoneBooks("Zona 1 Montevideo Shopping", -34.9031961, -56.1382969))
         zoneBooks.add(ZoneBooks("Zona 2 Tres Cruces Shopping", -34.8938207, -56.1685413))
         zoneBooks.add(ZoneBooks("Zona 3 Nuevo Centro Shopping", -34.8689368, -56.1719842))

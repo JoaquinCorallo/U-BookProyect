@@ -46,9 +46,12 @@
     <string-array name="condicionArray">
         <item> </item>
         <item>Drama</item>
-        <item>Ciencia Ficcion</item>
+        <item>Ciencia Ficción</item>
         <item>Romance</item>
         <item>Aventura</item>
+        <item>Tecnología</item>
+        <item>Salud</item>
+        <item>Thrillers</item>
     </string-array>
     <string-array name="libro_punto_de_entrega_array">
         <item> </item>

@@ -209,7 +209,7 @@ class UploadActivity : AppCompatActivity() {
                     "contact" to contactoText,
                     "cover" to bitmapPhotoTaken
                 )
-                db.collection("book").add(book)
+                db.collection("books").add(book)
             } catch (t: Throwable) {
                 Log.d("Failed to upload book", t.toString())
                 Toast.makeText(

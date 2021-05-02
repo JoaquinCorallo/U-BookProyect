@@ -246,7 +246,7 @@ class UploadActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
-            val takenImage = data?.extras?.get("data") as Bitmap
+            val takenImage = data?.extras?.get("data") as Bitmap?
             val fullImage = BitmapFactory.decodeFile(photofile.absolutePath)
             // convert bitmap to base 64
             val baos = ByteArrayOutputStream()

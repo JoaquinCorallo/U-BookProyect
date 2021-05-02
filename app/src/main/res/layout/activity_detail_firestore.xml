@@ -153,28 +153,22 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
             </LinearLayout>
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tvdelivery"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Zona de Entrega: "
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
+                tools:text="Zona de Entrega: " />
 
-                <TextView
-                    android:id="@+id/tvdelivery"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Zona de Entrega: "
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textStyle="bold"
-                    tools:text="Zona de Entrega: " />
-
-                <TextView
-                    android:id="@+id/detaildelivery"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/detaildelivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/detail_home_button"

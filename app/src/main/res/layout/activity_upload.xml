@@ -291,8 +291,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/autorInput" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/paginasInput"
+            <Spinner
+                android:id="@+id/puntoEntrega"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -300,19 +300,7 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/paginasText">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="28dp"
-                    android:paddingStart="4dp"
-                    android:paddingTop="4dp"
-                    android:paddingEnd="4dp"
-                    android:paddingBottom="4dp"
-                    android:singleLine="true"
-                    android:maxLength="100"
-                    app:hintEnabled="false" />
-            </com.google.android.material.textfield.TextInputLayout>
+                app:layout_constraintTop_toBottomOf="@+id/paginasText" />
 
             <TextView
                 android:id="@+id/edadText"
@@ -324,7 +312,7 @@
                 android:text="@string/libro_contacto"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/paginasInput" />
+                app:layout_constraintTop_toBottomOf="@+id/puntoEntrega" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edadInput"

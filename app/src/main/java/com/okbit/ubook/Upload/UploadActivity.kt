@@ -54,7 +54,7 @@ class UploadActivity : AppCompatActivity() {
         val descripcion = findViewById<TextInputLayout>(R.id.descripcionInput)
         val precio = findViewById<TextInputLayout>(R.id.precioInput)
         val isbn = findViewById<TextInputLayout>(R.id.isbnInput)
-        val puntoEntrega = findViewById<TextInputLayout>(R.id.paginasInput)
+        val staticSpinner3 = findViewById<View>(R.id.puntoEntrega) as Spinner
         val contacto = findViewById<TextInputLayout>(R.id.edadInput)
 
         // Floating Action Button
@@ -66,10 +66,10 @@ class UploadActivity : AppCompatActivity() {
             val controlAutorText = controlAutor.editText?.text.toString()
             val controlTipoTransaccionText = staticSpinner.selectedItem.toString()
             val controlCondicionText = staticSpinner2.selectedItem.toString()
+            val controlPuntoEntrega = staticSpinner3.selectedItem.toString()
             val descripcionText = descripcion.editText?.text.toString()
             val precioText = precio.editText?.text.toString()
             val isbnText = isbn.editText?.text.toString()
-            val puntoEntregaText = puntoEntrega.editText?.text.toString()
             val contactoText = contacto.editText?.text.toString()
 
             AlertDialog.Builder(this)
@@ -86,8 +86,7 @@ class UploadActivity : AppCompatActivity() {
                             isPhotoTaken,
                             descripcionText,
                             precioText,
-                            isbnText,
-                            puntoEntregaText,
+                            isbnText, controlPuntoEntrega,
                             contactoText
                         )
                     })
@@ -142,6 +141,23 @@ class UploadActivity : AppCompatActivity() {
         // Apply the adapter to the spinner
         staticSpinner2.adapter = staticAdapter2
 
+
+        // Create an ArrayAdapter using the string array and a default spinner
+        val staticAdapter3 = ArrayAdapter
+                .createFromResource(
+                        this, R.array.libro_punto_de_entrega_array,
+                        android.R.layout.simple_spinner_item
+                )
+
+        // Specify the layout to use when the list of choices appears
+        staticAdapter3
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        // Apply the adapter to the spinner
+
+        // Apply the adapter to the spinner
+        staticSpinner3.adapter = staticAdapter3
+
         // Button to take pictures
         button.setOnClickListener {
             val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -173,10 +189,10 @@ class UploadActivity : AppCompatActivity() {
         descripcion: String,
         precio: String,
         isbn: String,
-        puntoEntregaText: String,
+        controlPuntoEntrega: String,
         contactoText: String
     ) {
-        if (titleText != "" && languajeText != "" && puntoEntregaText != "" && contactoText != "" && autorText != "" && tipoTransaccion != "" && condicion != "" && photo) {
+        if (titleText != "" && languajeText != "" && controlPuntoEntrega != "" && contactoText != "" && autorText != "" && tipoTransaccion != "" && condicion != "" && photo) {
             print("subo a la base de datos")
             //Upload to DB
             try {
@@ -189,7 +205,7 @@ class UploadActivity : AppCompatActivity() {
                     "language" to languajeText,
                     "author" to autorText,
                     "isbn" to isbn,
-                    "delivery" to puntoEntregaText,
+                    "delivery" to controlPuntoEntrega,
                     "contact" to contactoText,
                     "cover" to bitmapPhotoTaken
                 )
@@ -234,7 +250,7 @@ class UploadActivity : AppCompatActivity() {
             val fullImage = BitmapFactory.decodeFile(photofile.absolutePath)
             // convert bitmap to base 64
             val baos = ByteArrayOutputStream()
-            fullImage.compress(Bitmap.CompressFormat.JPEG, 90, baos)
+            fullImage.compress(Bitmap.CompressFormat.JPEG, 20, baos)
             val bai = baos.toByteArray()
             val base64Image = Base64.getEncoder().encodeToString(bai)
             bitmapPhotoTaken = base64Image
